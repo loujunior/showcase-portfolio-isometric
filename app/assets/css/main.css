@@ -1,0 +1,115 @@
+/* =========================================================
+   main.css – global styles for the whole website
+   Colours and fonts come from the Figma design.
+   Change a variable here and it changes everywhere.
+   ========================================================= */
+
+:root {
+  /* Colours */
+  --color-bg: #040d1b;          /* page background */
+  --color-accent: #5278b2;      /* blue: buttons, borders, title */
+  --color-accent-light: #93aafc;
+  --color-border-dark: #0f2e5e; /* thin card borders */
+  --color-card-image: #0f2c5c;  /* project image placeholder */
+  --color-frame: #7e8faa;       /* grey-blue frame behind character */
+  --color-text: #ffffff;
+  --color-text-muted: #a39f9f;  /* labels like "Naam", "Focus" */
+
+  /* Fonts */
+  --font-title: 'Silkscreen', monospace;      /* big hero title */
+  --font-body: 'Pixelify Sans', sans-serif;   /* most text */
+  --font-mono: 'Share Tech Mono', monospace;  /* project cards */
+
+  /* Layout */
+  --page-width: 1440px;
+  --page-padding: 28px;
+}
+
+/* Make width/height include padding and border (easier to reason about) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* menu links scroll smoothly to a section */
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Sections are the reference box for their SectionGlow */
+main > section {
+  position: relative;
+}
+
+/* Glows may stick out sideways: cut them off without a scrollbar */
+main {
+  overflow-x: clip;
+}
+
+/* Centres content and limits the width on big screens */
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+/*
+  Pixel corners: cuts every corner off in two small steps, so a box
+  looks like it is drawn with pixels. Used by the dialogue box and the
+  tool slots. Set --step on the element (or a parent) to change the size.
+*/
+.pixel-corners {
+  clip-path: polygon(
+    0 calc(var(--step, 4px) * 2), var(--step, 4px) calc(var(--step, 4px) * 2), var(--step, 4px) var(--step, 4px),
+    calc(var(--step, 4px) * 2) var(--step, 4px), calc(var(--step, 4px) * 2) 0,
+    calc(100% - var(--step, 4px) * 2) 0, calc(100% - var(--step, 4px) * 2) var(--step, 4px),
+    calc(100% - var(--step, 4px)) var(--step, 4px), calc(100% - var(--step, 4px)) calc(var(--step, 4px) * 2),
+    100% calc(var(--step, 4px) * 2),
+    100% calc(100% - var(--step, 4px) * 2), calc(100% - var(--step, 4px)) calc(100% - var(--step, 4px) * 2),
+    calc(100% - var(--step, 4px)) calc(100% - var(--step, 4px)), calc(100% - var(--step, 4px) * 2) calc(100% - var(--step, 4px)),
+    calc(100% - var(--step, 4px) * 2) 100%,
+    calc(var(--step, 4px) * 2) 100%, calc(var(--step, 4px) * 2) calc(100% - var(--step, 4px)),
+    var(--step, 4px) calc(100% - var(--step, 4px)), var(--step, 4px) calc(100% - var(--step, 4px) * 2),
+    0 calc(100% - var(--step, 4px) * 2)
+  );
+}
+
+/* Big section title, e.g. "Select a project" */
+.section-title {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: clamp(18px, 2vw, 28px);
+  text-align: center;
+  margin-top: 12px;
+}
